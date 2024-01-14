@@ -25,41 +25,82 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Brand)
+                <a asp-page="./Index" asp-route-sortOrder="@ViewData["BrandSort"]">
+                    Brand
+                    @if (ViewData["BrandSort"].ToString() == "brand_desc")
+                    {
+                        <span>&#9660;</span> <!-- Downward arrow -->
+                    }
+                    else
+                    {
+                        <span>&#9650;</span> <!-- Upward arrow -->
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Model)
+                <a asp-page="./Index" asp-route-sortOrder="@ViewData["ModelSort"]">
+                    Model
+                    @if (ViewData["ModelSort"].ToString() == "model_desc")
+                    {
+                        <span>&#9660;</span>
+                    }
+                    else
+                    {
+                        <span>&#9650;</span>
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Price)
+                <a asp-page="./Index" asp-route-sortOrder="@ViewData["PriceSort"]">
+                    Price
+                    @if (ViewData["PriceSort"].ToString() == "price_desc")
+                    {
+                        <span>&#9660;</span>
+                    }
+                    else
+                    {
+                        <span>&#9650;</span>
+                    }
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].ProductionYear)
+                <a asp-page="./Index" asp-route-sortOrder="@ViewData["ProductionYearSort"]">
+                    Production Year
+                    @if (ViewData["ProductionYearSort"].ToString() == "productionyear_desc")
+                    {
+                        <span>&#9660;</span>
+                    }
+                    else
+                    {
+                        <span>&#9650;</span>
+                    }
+                </a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Car) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductionYear)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Car)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductionYear)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
