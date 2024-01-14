@@ -27,28 +27,32 @@ public static class SeedData
                 {
                     Brand = "Volskwagen",
                     Model = "Golf",
-                    Price = 70000
+                    Price = 70000,
+                    ProductionYear = DateTime.Parse("2020-01-01")
                 },
 
                 new Car
                 {
                     Brand = "Skoda",
                     Model = "Octavia",
-                    Price = 50000
+                    Price = 50000,
+                    ProductionYear = DateTime.Parse("2019/02/02")
                 },
 
                 new Car
                 {
                     Brand = "Porsche",
                     Model = "911",
-                    Price = 250000
+                    Price = 250000,
+                    ProductionYear = DateTime.Parse("2023-01-01")
                 },
 
                 new Car
                 {
                     Brand = "Volvo",
                     Model = "XC90",
-                    Price = 150000
+                    Price = 150000,
+                    ProductionYear = DateTime.Parse("2022-01-01")
                 }
             );
             context.SaveChanges();
