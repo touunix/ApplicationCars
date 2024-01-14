@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ApplicationCars.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<ApplicationCarsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationCarsContext") ?? throw new InvalidOperationException("Connection string 'ApplicationCarsContext' not found.")));
 
 var app = builder.Build();
 
