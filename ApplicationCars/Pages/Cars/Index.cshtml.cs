@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ApplicationCars.Data;
 using ApplicationCars.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApplicationCars.Pages.Cars
 {
@@ -21,12 +22,34 @@ namespace ApplicationCars.Pages.Cars
 
         public IList<Car> Car { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Models { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? CarModel { get; set; }
+
         public async Task OnGetAsync()
         {
-            if (_context.Car != null)
+            IQueryable<string> modelQuery = from m in _context.Car
+                                            orderby m.Model
+                                            select m.Model;
+
+            var cars = from c in _context.Car
+                         select c;
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Car = await _context.Car.ToListAsync();
+                cars = cars.Where(s => s.Brand.Contains(SearchString));
             }
+
+            if (!string.IsNullOrEmpty(CarModel))
+            {
+                cars = cars.Where(x => x.Model == CarModel);
+            }
+
+            Models = new SelectList(await modelQuery.Distinct().ToListAsync());
+            Car = await cars.ToListAsync();
         }
     }
 }
