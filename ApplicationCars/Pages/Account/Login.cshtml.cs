@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
@@ -26,14 +25,27 @@ namespace ApplicationCars.Pages.Account
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@site.com"),
-                    new Claim("Job", "MechanicC")
+                    new Claim("Job", "Admin")
                 };
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                var identity = new ClaimsIdentity(claims, "Cookie");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                await HttpContext.SignInAsync("Cookie", claimsPrincipal);
+                return RedirectToPage("/Cars/Index");
+            }
 
-                return RedirectToPage("/Index");
+            if (Credential.UserName == "mechanic" && Credential.Password == "2")
+            {
+                var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, "mechanic"),
+                    new Claim(ClaimTypes.Email, "mechanic@site.com"),
+                    new Claim("Job", "Mechanic")
+                };
+                var identity = new ClaimsIdentity(claims, "Cookie");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync("Cookie", claimsPrincipal);
+                return RedirectToPage("/Mechanics");
             }
             return Page();
         }
@@ -43,10 +55,10 @@ namespace ApplicationCars.Pages.Account
     {
         [Required]
         [Display(Name = "User Name")]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
     }
 }

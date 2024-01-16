@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ApplicationCars.Pages.Cars
 {
-    //[Authorize]
+    [Authorize(Policy = "IsAdmin")]
     public class IndexModel : PageModel
     {
         private readonly ApplicationCars.Data.ApplicationCarsContext _context;

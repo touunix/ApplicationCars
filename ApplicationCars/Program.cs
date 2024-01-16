@@ -5,12 +5,10 @@ using ApplicationCars.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
-
-builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+builder.Services.AddAuthentication().AddCookie("Cookie", options =>
 {
-    options.Cookie.Name = "MyCookieAuth";
+    options.Cookie.Name = "Cookie";
     options.LoginPath = "/Account/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
@@ -18,6 +16,7 @@ builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("IsMechanic", policy => policy.RequireClaim("Job", "Mechanic"));
+    options.AddPolicy("IsAdmin", policy => policy.RequireClaim("Job", "Admin"));
 });
 
 builder.Services.AddDbContext<ApplicationCarsContext>(options =>
@@ -32,22 +31,16 @@ using (var scope = app.Services.CreateScope())
     SeedData.Initialize(services);
 }
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseAuthorization();
 app.UseAuthentication();
-
+app.UseAuthorization();
 app.MapRazorPages();
-
 app.Run();
