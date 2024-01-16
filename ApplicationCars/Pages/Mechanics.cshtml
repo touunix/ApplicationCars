@@ -1,9 +1,62 @@
 ﻿@page
 @model ApplicationCars.Pages.MechanicsModel
 @{
+    ViewData["Title"] = "Mechanics Portal";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Mechanics Site</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<head>
+    <style>
+        nav {
+            background-color: #555;
+            padding: 0.5em;
+            display: flex;
+            justify-content: space-around;
+        }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                padding: 1em;
+            }
+
+                nav a:hover {
+                    background-color: #777;
+                }
+
+        section {
+            padding: 1em;
+        }
+    </style>
+</head>
+
+
+<div class="header">
+    <h1>@ViewData["Title"]</h1>
 </div>
+
+<nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#tasks">Tasks</a>
+    <a href="#inventory">Inventory</a>
+</nav>
+
+<section id="dashboard">
+    <h2>Welcome</h2>
+    <p>Check out the latest updates and important information.</p>
+</section>
+
+<section id="schedule">
+    <h2>Work Schedule</h2>
+    <p>Your upcoming work schedule and assignments.</p>
+</section>
+
+<section id="tasks">
+    <h2>Tasks and Assignments</h2>
+    <p>Stay on top of your tasks and assignments.</p>
+</section>
+
+<section id="inventory">
+    <h2>Inventory Management</h2>
+    <p>Manage and track the inventory of tools and parts.</p>
+</section>

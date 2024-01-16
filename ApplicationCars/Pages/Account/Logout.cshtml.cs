@@ -8,7 +8,7 @@ namespace ApplicationCars.Pages.Account
     {
         public async Task<IActionResult> OnPostAsync()
         {
-            await HttpContext.SignOutAsync("MyCookieAuth");
+            await HttpContext.SignOutAsync("Cookie");
             return RedirectToPage("/Index");
         }
     }

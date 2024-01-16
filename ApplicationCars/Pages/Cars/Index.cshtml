@@ -2,10 +2,10 @@
 @model ApplicationCars.Pages.Cars.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Service Hub";
 }
 
-<h1>Index</h1>
+<h1>Service Hub</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -29,11 +29,11 @@
                     Brand
                     @if (ViewData["BrandSort"].ToString() == "brand_desc")
                     {
-                        <span>&#9660;</span> <!-- Downward arrow -->
+                        <span>&#9660;</span> <!-- Down arrow -->
                     }
                     else
                     {
-                        <span>&#9650;</span> <!-- Upward arrow -->
+                        <span>&#9650;</span> <!-- Up arrow -->
                     }
                 </a>
             </th>
