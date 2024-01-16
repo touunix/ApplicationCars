@@ -1,1 +1,13 @@
 # ApplicationCars
+
+<h3>Student info</h3>
+<p>Mateusz Gabryel 76934</p>
+
+<h3>Possible credentials and redirections</h3>
+<p>username: admin</p>
+<p>password: 1</p>
+<p>redirect to: page about cars DB</p>
+
+<p>username: mechanic</p>
+<p>password: 2</p>
+<p>redirect to: page about mechanics site</p>
