@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ApplicationCars.Data;
 using ApplicationCars.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApplicationCars.Pages.Cars
 {
+    //[Authorize]
     public class IndexModel : PageModel
     {
         private readonly ApplicationCars.Data.ApplicationCarsContext _context;
